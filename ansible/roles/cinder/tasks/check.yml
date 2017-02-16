@@ -1,6 +1,6 @@
 ---
 - name: Cinder sanity checks
-  command: docker exec -t kolla_toolbox /usr/bin/ansible localhost
+  command: docker exec -t kolla_toolbox /var/lib/kolla/venv/bin/ansible localhost
     -m kolla_sanity
     -a "service=cinder
         project=service

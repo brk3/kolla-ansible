@@ -31,7 +31,7 @@
       - "kolla_logs:/var/log/kolla/"
 
 - name: Initializing toolbox container using normal user
-  command: docker exec -t kolla_toolbox /usr/bin/ansible --version
+  command: docker exec -t kolla_toolbox /var/lib/kolla/venv/bin/ansible --version
   changed_when: false
 
 - name: Starting cron container
