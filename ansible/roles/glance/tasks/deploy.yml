@@ -22,6 +22,18 @@
 - include: bootstrap.yml
   when: inventory_hostname in groups['glance-api']
 
+- name: Choosing host for glance_api if using file backend
+  set_fact:
+    glance_api_hosts: "{{ groups['glance-api']|first }}"
+  when:
+    - glance_backend_file | bool
+
+- name: Choosing hosts for glance_api if using shared storage
+  set_fact:
+    glance_api_hosts: "{{ groups['glance-api'] }}"
+  when:
+    - glance_backend_file | bool == False
+
 - name: Flush handlers
   meta: flush_handlers
 
