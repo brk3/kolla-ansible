@@ -5,19 +5,19 @@
     state: "directory"
     recurse: yes
   with_items:
-    - "rabbitmq"
+    - "{{ project_name }}"
 
 - name: Copying over config.json files for services
   template:
-    src: "{{ item }}.json.j2"
+    src: "rabbitmq.json.j2"
     dest: "{{ node_config_directory }}/{{ item }}/config.json"
   with_items:
-    - "rabbitmq"
+    - "{{ project_name }}"
 
 - name: Copying over rabbitmq configs
   template:
     src: "{{ item }}.j2"
-    dest: "{{ node_config_directory }}/rabbitmq/{{ item }}"
+    dest: "{{ node_config_directory }}/{{ project_name }}/{{ item }}"
   with_items:
      - "rabbitmq-env.conf"
      - "rabbitmq.config"

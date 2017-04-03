@@ -4,9 +4,9 @@
     action: "start_container"
     common_options: "{{ docker_common_options }}"
     image: "{{ rabbitmq_image_full }}"
-    name: "rabbitmq"
+    name: "{{ project_name }}"
     volumes:
-      - "{{ node_config_directory }}/rabbitmq/:{{ container_config_directory }}/:ro"
+      - "{{ node_config_directory }}/{{ project_name }}/:{{ container_config_directory }}/:ro"
       - "/etc/localtime:/etc/localtime:ro"
-      - "rabbitmq:/var/lib/rabbitmq/"
+      - "{{ project_name }}:/var/lib/rabbitmq/"
       - "kolla_logs:/var/log/kolla/"

@@ -1,4 +1,5 @@
 ---
+# TODO(pbourke): refactor for multiple rabbits
 - name: Checking if rabbitmq container needs upgrading
   kolla_docker:
     action: "compare_image"

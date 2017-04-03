@@ -16,4 +16,4 @@ RABBITMQ_LOG_BASE=/var/log/kolla/rabbitmq
 # https://bugs.launchpad.net/kolla/+bug/1562701
 # https://bugzilla.redhat.com/show_bug.cgi?id=1324922
 #export ERL_EPMD_ADDRESS={{ api_interface_address }}
-export ERL_EPMD_PORT={{ rabbitmq_epmd_port }}
+export ERL_EPMD_PORT={{ role_rabbitmq_epmd_port }}

@@ -1,4 +1,5 @@
 ---
+# TODO(pbourke): refactor for multiple rabbits
 - name: Ensuring the containers up
   kolla_docker:
     name: "{{ item.name }}"

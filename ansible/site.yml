@@ -165,6 +165,14 @@
   roles:
     - { role: rabbitmq,
         tags: rabbitmq,
+        role_rabbitmq_groups: rabbitmq,
+        role_rabbitmq_cluster_cookie: '{{ rabbitmq_cluster_cookie }}',
+        role_rabbitmq_password: '{{ rabbitmq_password }}',
+        role_rabbitmq_user: '{{ rabbitmq_user }}',
+        role_rabbitmq_epmd_port: '{{ rabbitmq_epmd_port }}',
+        role_rabbitmq_cluster_port: '{{ rabbitmq_cluster_port }}',
+        role_rabbitmq_management_port: '{{ rabbitmq_management_port }}',
+        role_rabbitmq_port: '{{ rabbitmq_port }}',
         when: enable_rabbitmq | bool }
 
 - name: Apply role etcd
@@ -323,6 +331,24 @@
     - { role: horizon,
         tags: horizon,
         when: enable_horizon | bool }
+
+- name: Apply role rabbitmq for Murano
+  gather_facts: false
+  hosts: murano-api
+  roles:
+    - { role: rabbitmq,
+        tags: rabbitmq,
+        project_name: murano_rabbitmq,
+        role_rabbitmq_groups: murano-api,
+        role_rabbitmq_cluster_cookie: '{{ murano_rabbitmq_cluster_cookie }}',
+        role_rabbitmq_password: '{{ murano_rabbitmq_password }}',
+        role_rabbitmq_user: '{{ murano_rabbitmq_user }}',
+        role_rabbitmq_epmd_port: '{{ murano_rabbitmq_epmd_port }}',
+        role_rabbitmq_cluster_port: '{{ murano_rabbitmq_cluster_port }}',
+        role_rabbitmq_management_port: '{{ murano_rabbitmq_management_port }}',
+        role_rabbitmq_port: '{{ murano_rabbitmq_port }}',
+        when: enable_rabbitmq | bool }
+        #when: enable_murano | bool }
 
 - name: Apply role murano
   gather_facts: false

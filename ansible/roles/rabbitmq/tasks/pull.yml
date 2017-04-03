@@ -4,4 +4,4 @@
     action: "pull_image"
     common_options: "{{ docker_common_options }}"
     image: "{{ rabbitmq_image_full }}"
-  when: inventory_hostname in groups['rabbitmq']
+  when: inventory_hostname in groups[role_rabbitmq_groups]

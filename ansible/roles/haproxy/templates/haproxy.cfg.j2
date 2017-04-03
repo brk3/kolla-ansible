@@ -510,6 +510,14 @@ listen murano_api
 {% for host in groups['murano-api'] %}
   server {{ hostvars[host]['ansible_hostname'] }} {{ hostvars[host]['ansible_' + hostvars[host]['api_interface']]['ipv4']['address'] }}:{{ murano_api_port }} check inter 2000 rise 2 fall 5
 {% endfor %}
+
+listen murano_rabbitmq
+  mode tcp
+  option tcplog
+  bind {{ kolla_external_vip_address }}:{{ murano_rabbitmq_port }}
+{% for host in groups['murano-api'] %}
+  server {{ hostvars[host]['ansible_hostname'] }} {{ hostvars[host]['ansible_' + hostvars[host]['api_interface']]['ipv4']['address'] }}:{{ murano_rabbitmq_port }} check inter 2000 rise 2 fall 5
+{% endfor %}
 {% if haproxy_enable_external_vip | bool %}
 
 listen murano_api_external

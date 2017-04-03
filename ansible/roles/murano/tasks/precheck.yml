@@ -14,3 +14,5 @@
   when:
     - container_facts['murano_api'] is not defined
     - inventory_hostname in groups['murano-api']
+
+# TODO(pbourke): murano_rabbitmq port checks

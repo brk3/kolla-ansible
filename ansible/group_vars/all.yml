@@ -506,6 +506,18 @@ nova_backend: "{{ 'rbd' if nova_backend_ceph | bool else 'default' }}"
 #######################
 horizon_backend_database: "{{ enable_murano | bool }}"
 
+
+#######################
+# Murano options
+#######################
+murano_rabbitmq_port: "5674"
+murano_rabbitmq_management_port: "15674"
+murano_rabbitmq_cluster_port: "25674"
+murano_rabbitmq_epmd_port: "4371"
+murano_rabbitmq_user: "openstack"
+murano_rabbitmq_version: "{{ rabbitmq_version }}"
+
+
 #################
 # Octavia options
 #################
