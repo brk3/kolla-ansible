@@ -1,14 +1,23 @@
 {
   "vhosts": [
-    {"name": "/"}
+    {"name": "/"},
+    {"name": "{{ rabbitmq_murano_agent_vhost}}"}
   ],
   "users": [
-    {"name": "{{ rabbitmq_user }}", "password": "{{ rabbitmq_password }}", "tags": "administrator"}
+    {"name": "{{ rabbitmq_user }}", "password": "{{ rabbitmq_password }}", "tags": "administrator"},
+    {"name": "{{ rabbitmq_murano_agent_user }}", "password": "{{ rabbitmq_murano_agent_password }}",
+"tags": "administrator"}
   ],
   "permissions": [
-    {"user": "{{ rabbitmq_user }}", "vhost": "/", "configure": ".*", "write": ".*", "read": ".*"}
+    {"user": "{{ rabbitmq_user }}", "vhost": "/", "configure": ".*", "write": ".*", "read": ".*"},
+    {"user": "{{ rabbitmq_murano_agent_user }}", "vhost": "{{ rabbitmq_murano_agent_vhost }}",
+"configure": ".*", "write": ".*", "read": ".*"}
   ],
   "policies":[
-    {"vhost": "/", "name": "ha-all", "pattern": ".*", "apply-to": "all", "definition": {"ha-mode":"all"}, "priority":0}
+    {"vhost": "/", "name": "ha-all", "pattern": ".*", "apply-to": "all", "definition":
+{"ha-mode":"all"}, "priority":0},
+    {"vhost": "{{ rabbitmq_murano_agent_vhost }}", "name": "ha-all", "pattern": ".*", "apply-to":
+"all", "definition": {"ha-mode":"all"}, "priority":0}
   ]
 }
+

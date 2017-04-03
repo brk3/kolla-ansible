@@ -41,3 +41,11 @@ api_workers = {{ openstack_service_workers }}
 
 [oslo_messaging_notifications]
 driver = messagingv2
+
+{% if service_name == 'murano-engine' %}
+[rabbitmq]
+host = 192.169.5.164
+login = {{ rabbitmq_murano_agent_user }}
+password = {{ rabbitmq_murano_agent_password }}
+virtual_host = {{ rabbitmq_murano_agent_vhost }}
+{% endif %}

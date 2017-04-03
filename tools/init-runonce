@@ -9,9 +9,9 @@ IMAGE_URL=http://download.cirros-cloud.net/0.3.4/
 IMAGE=cirros-0.3.4-x86_64-disk.img
 IMAGE_NAME=cirros
 IMAGE_TYPE=linux
-EXT_NET_CIDR='10.0.2.0/24'
-EXT_NET_RANGE='start=10.0.2.150,end=10.0.2.199'
-EXT_NET_GATEWAY='10.0.2.1'
+EXT_NET_CIDR='192.169.5.0/24'
+EXT_NET_RANGE='start=192.169.5.150,end=192.169.5.199'
+EXT_NET_GATEWAY='192.169.5.1'
 
 # Sanitize language settings to avoid commands bailing out
 # with "unsupported locale setting" errors.
@@ -128,3 +128,5 @@ openstack server create \\
     --nic net-id=${DEMO_NET_ID} \\
     demo1
 EOF
+
+openstack role add --user admin --project admin heat_stack_owner
